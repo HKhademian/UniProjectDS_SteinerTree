@@ -48,7 +48,7 @@ fun Graph.bake() {
 fun inputGraph(): Graph {
 	val graph = Graph()
 
-	println("enter uni-directional graph.graph edges:")
+	println("enter uni-directional graph edges:")
 	while (true) {
 		val edge = inputEdge() ?: break
 		graph.addEdge(edge)
@@ -57,8 +57,8 @@ fun inputGraph(): Graph {
 	inputVertexes("enter terminal vertexes or enter to end:")
 		?.forEach(graph::addTerminal)
 
-	println("You input this graph.graph: ")
-	println(graph)
+	// println("You input this graph: ")
+	// println(graph)
 
 	return graph
 }
@@ -68,8 +68,7 @@ fun inputEdge(): Edge? {
 		?: return null
 	if (verts.size < 2) return null
 	val edge = Edge(verts[0], verts[1], verts.getOrNull(2)?.key?.toDoubleOrNull() ?: 1.0)
-	print("add edge: ")
-	println(edge)
+	//println("add edge: $edge")
 	return edge
 }
 
