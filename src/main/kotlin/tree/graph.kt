@@ -1,8 +1,7 @@
 package tree
 
-import graph.Graph
-import graph.Vertex
-import tree.Tree
+import graph.*
+import tree.*
 import java.lang.RuntimeException
 
 /**
