@@ -25,7 +25,7 @@ import tree.*
  * 2. graph to tree = O(n^2)
  * 3. delete non-term leafs = O(n)*O(t*logt)
  */
-fun method1(input: Graph, log: (msg: String, data: Any?) -> Unit = { _, _ -> }): Pair<Graph, Tree> {
+fun method1(input: Graph, log: (msg: String, data: Any?) -> Unit = { _, _ -> }): Pair<Graph, Graph> {
 	log("------\ninput:", input)
 
 	val k = kruskal(input)
@@ -50,7 +50,7 @@ fun method1(input: Graph, log: (msg: String, data: Any?) -> Unit = { _, _ -> }):
 
 	log("-------\nmin graph:", result)
 
-	return result to t
+	return result to k
 }
 
 fun main() {

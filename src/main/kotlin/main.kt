@@ -10,22 +10,30 @@ fun main(vararg args: String) {
 		print("Enter .stp file path: ")
 		readLine() ?: exitProcess(0)
 	}
-
 	val inFile = File(path)
-	if (!inFile.exists() || !inFile.isFile) {
-		println("Invalid file")
+	if (!inFile.exists()) {
+		println("Invalid path")
 		exitProcess(0)
 	}
+
+	return process(inFile)
+}
+
+fun process(inFile: File) {
+	if (!inFile.isFile)
+		return inFile.listFiles()?.forEach(::process) ?: Unit
+
+	println("\n***************")
 
 	// read graph
 	val input = readGraph(inFile)
 
 	// compute result
-	val (result, _) = method(input) // { msg, obj -> println("$msg:\n$obj") }
-	println("\nCost: ${result.weight}\nEdges: ${result.edges.size}")
+	val (result, kruskal) = method(input) // { msg, obj -> println("$msg:\n$obj") }
+	println("\nkruskal:${kruskal.weight}\nCost: ${result.weight}\nEdges: ${result.edges.size}")
 
 	// store result
 	val outFile = File(inFile.parent, "${inFile.nameWithoutExtension}.out")
-	println("\nwrite result to output file:\n${outFile.absolutePath}")
+	println("write result to output file:\n${outFile.absolutePath}")
 	writeGraph(outFile, result)
 }
