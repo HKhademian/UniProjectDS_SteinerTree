@@ -1,8 +1,8 @@
 package tree
 
-import graph.*
-import tree.*
-import java.lang.RuntimeException
+import graph.Graph
+import graph.Vertex
+import randomOrNull
 
 /**
  * to convert a graph to a tree:
@@ -14,8 +14,8 @@ fun Graph.toTree(startingVertex: Vertex? = null): Tree {
 
 	val rootV: Vertex =
 		(if (startingVertex in verts) startingVertex else null) // prefer startingVertex
-			?: terms.firstOrNull()  // else first terminal
-			?: verts.firstOrNull() // else first vertex
+			?: terms.randomOrNull()  // else first terminal
+			?: verts.randomOrNull() // else first vertex
 			?: throw RuntimeException("no starting vert") // else no possible solution
 
 	fun parse(tree: Tree) {
