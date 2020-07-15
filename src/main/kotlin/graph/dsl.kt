@@ -20,3 +20,16 @@ infix fun Pair<Any, Any>.w(weight: Number) =
 
 fun Graph.print() =
 	println(this)
+
+fun Vertex.clone() =
+	this // Vertex(ket)
+
+fun Edge.clone() =
+	this // Edge(first, second, weight)
+
+fun Graph.clone() = let { me ->
+	graph {
+		me.edges.forEach { addEdge(it.clone()) }
+		me.terms.forEach { addTerminal(it.clone()) }
+	}
+}
