@@ -1,17 +1,17 @@
+package method1
+
 import data.graph01
-import graph.Graph
-import graph.Vertex
-import graph.clone
-import graph.print
+import graph.*
 
 /**
  * in this method, as text of project said:
- * first kruskal it
+ * first `method1.kruskal` it
  * second remove extra edges
  */
 
 fun main() {
 	val input = graph01
+
 	val result = method1(input)
 	input.print()
 	result.print()

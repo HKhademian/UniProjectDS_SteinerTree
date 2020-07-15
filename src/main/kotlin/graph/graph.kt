@@ -6,8 +6,8 @@ inline class Vertex(val key: String) {
 	override fun toString() = "V($key)"
 }
 
-class Edge(val first: Vertex, val second: Vertex, val weight: Float = 1.0f) {
-	override fun toString() = "E($weight)<$first->$second>"
+class Edge(val first: Vertex, val second: Vertex, val weight: Double = 1.0) {
+	override fun toString() = "E(w:$weight)<$first->$second>"
 }
 
 class Graph {
@@ -16,33 +16,33 @@ class Graph {
 	val terms: Set<Vertex> = mutableSetOf()
 
 	override fun toString() = """
-	|G(
-	|	V: $verts
-	|	T: $terms
-	|	E: $edges
-	|)
+	|G(w:$weight){
+	|	V: $verts,
+	|	T: $terms,
+	|	E: $edges,
+	|}
 	""".trimMargin()
+}
 
-	fun addEdge(edge: Edge) {
-		(verts as MutableSet)
-		(edges as MutableSet)
+fun Graph.addEdge(edge: Edge) {
+	(verts as MutableSet)
+	(edges as MutableSet)
 
-		verts.add(edge.first)
-		verts.add(edge.second)
-		edges.add(edge)
-	}
+	verts.add(edge.first)
+	verts.add(edge.second)
+	edges.add(edge)
+}
 
-	fun addTerminal(term: Vertex) {
-		(terms as MutableSet)
-		//if (term in verts)
-		terms.add(term)
-	}
+fun Graph.addTerminal(term: Vertex) {
+	(terms as MutableSet)
+	//if (term in verts)
+	terms.add(term)
+}
 
-	// remove not exists terminals
-	fun bake() {
-		(terms as MutableSet)
-		terms.removeIf { !verts.contains(it) }
-	}
+// remove not exists terminals
+fun Graph.bake() {
+	(terms as MutableSet)
+	terms.removeIf { !verts.contains(it) }
 }
 
 fun inputGraph(): Graph {
@@ -67,7 +67,7 @@ fun inputEdge(): Edge? {
 	val verts = inputVertexes("Enter vertex 1 <space> vertex 2 [<space> weight] or enter to end: ")
 		?: return null
 	if (verts.size < 2) return null
-	val edge = Edge(verts[0], verts[1], verts.getOrNull(2)?.key?.toFloatOrNull() ?: 1.0f)
+	val edge = Edge(verts[0], verts[1], verts.getOrNull(2)?.key?.toDoubleOrNull() ?: 1.0)
 	print("add edge: ")
 	println(edge)
 	return edge

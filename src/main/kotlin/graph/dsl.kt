@@ -16,7 +16,7 @@ fun v(key: Any) = when (key) {
 }
 
 infix fun Pair<Any, Any>.w(weight: Number) =
-	Edge(v(first), v(second), weight.toFloat())
+	Edge(v(first), v(second), weight.toDouble())
 
 fun Graph.print() =
 	println(this)
@@ -33,3 +33,6 @@ fun Graph.clone() = let { me ->
 		me.terms.forEach { addTerminal(it.clone()) }
 	}
 }
+
+val Graph.weight
+	get() = edges.sumByDouble { it.weight }
